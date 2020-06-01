@@ -19,15 +19,15 @@ class TextWidgetModel extends Model
 
     protected static function booted() {
         static::created(function() {
-            $this->clearCache();
+            self::clearCache();
         });
 
         static::updated(function() {
-            $this->clearCache();
+            self::clearCache();
         });
 
         static::deleted(function() {
-            $this->clearCache();
+            self::clearCache();
         });
     }
 }
