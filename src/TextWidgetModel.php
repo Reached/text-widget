@@ -17,7 +17,7 @@ class TextWidgetModel extends Model
         }
     }
 
-    public function boot() {
+    protected static function booted() {
         static::created(function() {
             $this->clearCache();
         });
