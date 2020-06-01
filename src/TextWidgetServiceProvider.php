@@ -39,7 +39,7 @@ class TextWidgetServiceProvider extends ServiceProvider
         ], 'migrations');
 
         $this->publishes([
-            __DIR__.'/config/text-widget.php' => config_path('text-widget.php'),
+            __DIR__.'/../config/text-widget.php' => config_path('text-widget.php'),
         ]);
     }
 }
