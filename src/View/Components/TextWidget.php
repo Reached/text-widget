@@ -3,7 +3,7 @@
 namespace Reached\TextWidget\View\Components;
 
 use Reached\TextWidget\TextWidgetModel;
-use Reached\WidgetAble\Widgetable;
+use Reached\Widgetable\Widgetable;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
