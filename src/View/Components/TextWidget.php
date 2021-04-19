@@ -3,14 +3,11 @@
 namespace Reached\TextWidget\View\Components;
 
 use Reached\TextWidget\TextWidgetModel;
-use Reached\Widgetable\Widgetable;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class TextWidget extends Component
 {
-    use Widgetable;
-
     public $name;
     public $widgetFound = false;
 
@@ -34,6 +31,23 @@ class TextWidget extends Component
         if($this->widget) {
             return $this->widget;
         }
+    }
+    
+    public function findWidget($model, $name)
+    {
+        $class = $model;
+        $instance = new $class();
+
+        if(App::environment('local')) {
+            return $instance->firstOrCreate(
+                ['block_name' => $name],
+                ['text' => "Some text for the $name widget"]
+            );
+        }
+
+        return Cache::remember($model . '-' . $name, now()->addHours(12), function() use($instance, $name) {
+            return $instance->where('block_name', $name)->first();
+        });
     }
 
     /**
