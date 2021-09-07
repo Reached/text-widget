@@ -38,7 +38,7 @@ class TextWidget extends Component
         $class = $model;
         $instance = new $class();
 
-        if(App::environment('local')) {
+        if(app()->environment('local')) {
             return $instance->firstOrCreate(
                 ['block_name' => $name],
                 ['text' => "Some text for the $name widget"]
