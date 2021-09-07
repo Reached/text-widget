@@ -38,12 +38,10 @@ class TextWidget extends Component
         $class = $model;
         $instance = new $class();
 
-        //if(app()->environment('local')) {
-            return $instance->firstOrCreate(
-                ['block_name' => $name],
-                ['text' => "Some text for the $name widget"]
-            );
-        //}
+        return $instance->firstOrCreate(
+            ['block_name' => $name],
+            ['text' => "Some text for the $name widget"]
+        ); 
 
         return Cache::remember($model . '-' . $name, now()->addHours(12), function() use($instance, $name) {
             return $instance->where('block_name', $name)->first();
